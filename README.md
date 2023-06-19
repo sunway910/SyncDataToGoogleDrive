@@ -1,6 +1,4 @@
-# SyncContainerDataToGoogleDrive
-
-# Sync you container data to Google Drive
+# Sync you container data/mysql data to Google Drive
 
 # 1: Enable Google Drive API
 * First: you should enable Google Drive API in GCP: `https://console.cloud.google.com/apis/library`
