@@ -1,0 +1,1 @@
+docker cp <container_name>:/code/blog/uploads/editor /data

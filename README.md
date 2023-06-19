@@ -44,6 +44,14 @@
 * Tips: first time your run the script to upload files to google drive, you should authorize in browser,if you linux server does not support GUI,you can run script at your local computer and get file: `token.json` ,copy it to your linux server , make a cron job to exec py script everyday and auto upgrade `token.json` , then the script can run in linux server
 
 
+# 6 create cron job in your linux server
+your can get a cron job example in `crontab_demo.txt`
+`crontab -e`
+Edit your job rules in crontab,when it finished: `Ctrl+O` `Enter` `Ctrl+X`
+
+
+
+
 # Tips
 1: you can get you google drive directory id in url:
   such as : https://drive.google.com/drive/folders/ `directory id`
@@ -53,5 +61,8 @@
 3: Pay attention to the SCOPES = ['https://www.googleapis.com/auth/drive'] in `upload_to_google_one.py`
 If you want to control you authority, you need to config the param: `SCOPES`
 you can get more information in : `https://developers.google.com/identity/protocols/oauth2/scopes?hl=zh-cn`
+
+
+
 
 
