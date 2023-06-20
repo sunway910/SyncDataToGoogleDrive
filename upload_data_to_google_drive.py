@@ -82,6 +82,5 @@ def upload_file_to_google_one(file_list):
 
 if __name__ == '__main__':
     directory = '/data/blog_image_data'
-    file_paths = find_files_created_within_one_day(directory)
-    print(file_paths)
-    upload_file_to_google_one(file_paths)
+    files = find_files_created_within_one_day(directory)
+    upload_file_to_google_one(files)
