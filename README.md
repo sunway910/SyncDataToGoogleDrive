@@ -40,8 +40,8 @@
 * Tips: first time your run the script to upload files to google drive, you should authorize in browser,if you linux server does not support GUI,you can run script at your local computer and get file: `token.json` ,copy it to your linux server , make a cron job to exec py script every day and auto upgrade `token.json` , then the script can run in linux server
 
 # 6 create cron job in your linux server
-your can get a cron job example in `crontab_demo.txt`
-`crontab -e`
+your can get a cron job example in `crontab.txt`
+use `crontab -e` to 
 Edit your job rules in crontab,when it finished: `Ctrl+O` `Enter` `Ctrl+X`
 
 

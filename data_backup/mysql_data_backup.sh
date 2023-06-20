@@ -9,6 +9,6 @@ local_database="xxxxxxxxxxxxxxxx"
 
 
 # Dump the local MySQL database
-mysqldump -h $local_host -P $local_port -u $local_user -p$local_password $local_database > /data/blogdata_dump.sql
+mysqldump -h $local_host -P $local_port -u $local_user -p$local_password $local_database > /data/blog_image_data/blogdata_dump.sql
 
 echo "MySQL database dump complete!"

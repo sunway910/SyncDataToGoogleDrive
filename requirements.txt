@@ -1,4 +1,6 @@
-# python > 3.10.7
-google-api-python-client
-google-auth-httplib2
-google-auth-oauthlib
+# Python > 3.10.7
+# Get miniconda:  wget https://repo.anaconda.com/miniconda/Miniconda3-py310_23.3.1-0-Linux-x86_64.sh
+# Miniconda base env: python-3.10.11
+google-api-python-client==2.89.0
+google-auth-httplib2==0.1.0
+google-auth-oauthlib==1.0.0
