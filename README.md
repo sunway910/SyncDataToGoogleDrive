@@ -1,4 +1,4 @@
-# Sync your container data/mysql data to Google Drive
+# Sync your data to Google Drive(Python)
 
 # 1: Enable Google Drive API
 * First: you should enable Google Drive API in GCP: `https://console.cloud.google.com/apis/library`
@@ -48,14 +48,14 @@ Edit your job rules in crontab,when it finished: `Ctrl+O` `Enter` `Ctrl+X`
 
 
 # Tips
-1: you can get your Google Drive directory id in url:
-  such as : https://drive.google.com/drive/folders/ `directory id`
+1: you can get your `Google Drive directory id` in browser when your open a directory:
+  such as : https://drive.google.com/drive/folders/directory_id
 
-2: first time run script: you need to authorize you account in browser,if you run script in linux,and visit the authorize_url in your local computer, you will get localhost_error, cuz the authorization_ip is your linux server's ip, not your local ip in Windows server
+2: first time run script: you need to authorize you account in browser and generate file: `token.json`, if you run script in linux,and visit the `authorize_url` in your local Windows Server, you will get `localhost_error`, cuz the `authorization_ip` is your linux server's ip, not your local ip in Windows server
 
 3: Pay attention to the SCOPES = ['https://www.googleapis.com/auth/drive'] in `upload_to_google_one.py`
 If you want to control you authority, you need to config the param: `SCOPES`
-you can get more information in : `https://developers.google.com/identity/protocols/oauth2/scopes?hl=zh-cn`
+you can get more information in : `https://developers.google.com/identity/protocols/oauth2/scopes`
 
 
 
