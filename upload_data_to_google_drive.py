@@ -1,5 +1,6 @@
 from __future__ import print_function
-
+import asyncio
+import time
 import os
 from googleapiclient.http import MediaFileUpload
 from google.auth.transport.requests import Request
@@ -29,7 +30,7 @@ def find_files_created_within_one_day(directory_path):
     return file_create_in_24h
 
 
-def upload_file_to_google_one(file_list):
+async def upload_file_to_google_one(file_list):
     """
     @param file_list: update a series of files to google drive
     @return: True or False
@@ -66,12 +67,16 @@ def upload_file_to_google_one(file_list):
         folder_id = '1Sx3mTG9DDhAn7nw9xvhSR9R-CQF6XhB4'
         # create drive api client
         service = build('drive', 'v3', credentials=creds)
-
+        print(f"started at {time.strftime('%X')}")
+        tasks = []
         for file in file_list:
             file_metadata = {'name': file, 'parents': [folder_id]}
             media = MediaFileUpload(file)
-            file = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
-            print("file : ", file, "upload successfully!")
+            task = asyncio.create_task(upload(file_metadata, media, service))
+            tasks.append(task)
+        res = await asyncio.gather(*tasks)
+        print('Async task id list: ', res)
+        print(f"finished at {time.strftime('%X')}")
 
     except HttpError as error:
         print(F'An error occurred: {error}')
@@ -80,7 +85,12 @@ def upload_file_to_google_one(file_list):
     return True
 
 
+async def upload(file_metadata, media, service):
+    return service.files().create(body=file_metadata, media_body=media, fields='id').execute()
+
+
 if __name__ == '__main__':
-    directory = '/data/blog_image_data'
+    directory = 'upload_test'
     files = find_files_created_within_one_day(directory)
-    upload_file_to_google_one(files)
+    print(files, ' should be uploaded to google drive!')
+    asyncio.run(upload_file_to_google_one(files))
