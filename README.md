@@ -51,9 +51,9 @@ Edit your job rules in crontab,when it finished: `Ctrl+O` `Enter` `Ctrl+X`
 1: you can get your `Google Drive directory id` in browser when your open a directory:
   such as : https://drive.google.com/drive/folders/directory_id
 
-2: first time run script: you need to authorize you account in browser and generate file: `token.json`, if you run script in linux,and visit the `authorize_url` in your local Windows Server, you will get `localhost_error`, cuz the `authorization_ip` is your linux server's ip, not your local ip in Windows server
+2: first time run script: you need to authorize you account in browser and generate file: `token.json`, if you run script in linux,and visit the `authorize_url` in your local Windows Server, you will get `localhost_error`, cuz the `authorization_ip` is your linux server's ip, not your local ip in Windows server. So you can run the python script in your Windows Server first and then get `token.json`; if you have linux GUI, you can do all of it in your linux server.
 
-3: Pay attention to the SCOPES = ['https://www.googleapis.com/auth/drive'] in `upload_to_google_one.py`
+3: Pay attention to the SCOPES = ['https://www.googleapis.com/auth/drive'] in `upload_data_to_google_drive.py`
 If you want to control you authority, you need to config the param: `SCOPES`
 you can get more information in : `https://developers.google.com/identity/protocols/oauth2/scopes`
 
