@@ -1,5 +1,7 @@
 # Sync your data to Google Drive(Python)
 
+**My blog server produce data every day, and I don't want to lose it, so I upload the incremental data into google drive every day!**
+
 # 1: Enable Google Drive API
 * First: you should enable Google Drive API in GCP: `https://console.cloud.google.com/apis/library`
   search `Google Drive API` and enable it
