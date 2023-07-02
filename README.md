@@ -35,7 +35,7 @@
 * `wget https://repo.anaconda.com/miniconda/Miniconda3-py310_23.3.1-0-Linux-x86_64.sh`
 * `bash Miniconda3-py310_23.3.1-0-Linux-x86_64.sh`
 * The base conda env is satisfied or your can create another env
-* `conda activate base & pip install -r requirements.txt`
+* `conda activate base && pip install -r requirements.txt`
 
 # 5 exec the script to upload file to Google Drive
 * `bash bash_upload.sh` or `python upload_to_google_one.py`
