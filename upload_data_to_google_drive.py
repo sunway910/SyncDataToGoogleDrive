@@ -74,6 +74,7 @@ async def upload_file_to_google_one(file_list):
             media = MediaFileUpload(file)
             task = asyncio.create_task(upload(file_metadata, media, service))
             tasks.append(task)
+        # asyncio.gather(*tasks) = asyncio.gather(task1,task2,task3......)
         res = await asyncio.gather(*tasks)
         print('Async task id list: ', res)
         print(f"finished at {time.strftime('%X')}")
