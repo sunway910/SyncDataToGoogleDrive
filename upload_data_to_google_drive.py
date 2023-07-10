@@ -49,16 +49,16 @@ async def upload_file_to_google_one(file_list):
     if os.path.exists('google_secret/token.json'):
         print('-------------------------------use token.json to upload data---------------------------------')
         creds = Credentials.from_authorized_user_file('google_secret/token.json', SCOPES)
-    # If there are no (valid) credentials available, let the user log in.
-    if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             print('-------------------------------token.json is expired-----------------------------------------------')
             creds.refresh(Request())
-        else:
-            print('-------------------------------use credentials.json to upload data---------------------------------')
-            flow = InstalledAppFlow.from_client_secrets_file('google_secret/credentials.json', SCOPES)
-            # `run_local_server` will make a connection to remote, you need to open the url in browser
-            creds = flow.run_local_server(port=0)
+            print('upgrade token successfully')
+    # If there are no (valid) credentials available, let the user log in.
+    if not creds or not creds.valid:
+        print('-------------------------------use credentials.json to upload data---------------------------------')
+        flow = InstalledAppFlow.from_client_secrets_file('google_secret/credentials.json', SCOPES)
+        # `run_local_server` will make a connection to remote, you need to open the url in browser
+        creds = flow.run_local_server(port=0)
         # Save the credentials for the next run
         with open('google_secret/token.json', 'w') as token:
             token.write(creds.to_json())
