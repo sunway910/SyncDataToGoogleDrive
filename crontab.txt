@@ -3,7 +3,7 @@
 # dump the data from mysql
 0 1 * * *  bash data_backup/mysql_data_backup.sh
 # Diff two directory
-# /data/editor: the latest data copy from container in today
+# /data/editor: the latest data copy from container today
 # /data/blog_image_data: the data in yesterday, you have already upload to google drive
 # diff two directroy to make the file_create_time different, so that you can incremental update you data instead of upload all data
 0 2 * * *  cd /data/editor && diff /data/editor /data/blog_image_data|awk '{for(i=4;i<=NF;i=i+1)printf " "$i;print ""}' | xargs -I {} cp {} /data/blog_image_data/

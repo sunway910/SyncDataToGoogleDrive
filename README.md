@@ -38,25 +38,40 @@
 * `conda activate base && pip install -r requirements.txt`
 
 # 5 exec the script to upload file to Google Drive
-* `bash bash_upload.sh` or `python upload_to_google_one.py`
+* `bash bash_upload.sh` or `python upload_data_to_google_drive.py`
 * Tips: first time your run the script to upload files to google drive, you should authorize in browser,if you linux server does not support GUI,you can run script at your local computer and get file: `token.json` ,copy it to your linux server , make a cron job to exec py script every day and auto upgrade `token.json` , then the script can run in linux server
 
 # 6 create cron job in your linux server
 your can get a cron job example in `crontab.txt`
 use `crontab -e` to 
-Edit your job rules in crontab,when it finished: `Ctrl+O` `Enter` `Ctrl+X`
+Edit your job rules in crontab, when it finished: `Ctrl+O` -> `Enter` -> `Ctrl+X`
 
 
 
 
 # Tips
-1: you can get your `Google Drive directory id` in browser when your open a directory:
-  such as : https://drive.google.com/drive/folders/directory_id
+> All configuration must config in `configuration.py`
 
-2: first time run script: you need to authorize you account in browser and generate file: `token.json`, if you run script in linux,and visit the `authorize_url` in your local Windows Server, you will get `localhost_error`, cuz the `authorization_ip` is your linux server's ip, not your local ip in Windows server. So you can run the python script in your Windows Server first and then get `token.json`; if you have linux GUI, you can do all of it in your linux server.
+--------------------------------------------------------------------------------------
+**1**: you can get your `Google Drive folder id` in browser when your open a directory:
+  * such as : https://drive.google.com/drive/folders/folder_id
 
-3: Pay attention to the SCOPES = ['https://www.googleapis.com/auth/drive'] in `upload_data_to_google_drive.py`
+
+--------------------------------------------------------------------------------------
+**2**: first time run script: you need to authorize you account in browser and generate file: `token.json`, 
+
+if you run script in linux,and visit the `authorize_url` in your local Windows Server, you will get `localhost_error`, 
+
+cuz the `authorization_ip` is your linux server's ip, not your local ip in Windows server. 
+
+So you can run the python script in your Windows Server first and then get `token.json`; if you have linux GUI, you can do all of it in your linux server.
+
+
+--------------------------------------------------------------------------------------
+**3**: Pay attention to the SCOPES = ['https://www.googleapis.com/auth/drive'] in `upload_data_to_google_drive.py`
+
 If you want to control you authority, you need to config the param: `SCOPES`
+
 you can get more information in : `https://developers.google.com/identity/protocols/oauth2/scopes`
 
 
