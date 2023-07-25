@@ -37,8 +37,7 @@ async def upload_file_to_google_drive(file_list) -> bool:
     If you want to use this code, you need to add the token.json/credentials.json file.
     The file contains the information of your Google Drive account.
     The file token.json is used to store the user's access and refresh tokens, and is
-    created automatically when the authorization flow completes for the first
-    time.
+    created automatically when the authorization flow completes for the first time.
     """
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is

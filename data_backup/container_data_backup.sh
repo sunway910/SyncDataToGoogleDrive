@@ -1,1 +1,1 @@
-docker cp <container_name>:/code/blog/uploads/editor /data
+docker cp <container_name>:<container_directory> /data

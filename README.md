@@ -38,7 +38,7 @@
 * `conda activate base && pip install -r requirements.txt`
 
 # 5 exec the script to upload file to Google Drive
-* `bash bash_upload.sh` or `python upload_data_to_google_drive.py`
+* `bash upload.sh` or `python upload_data_to_google_drive.py`
 * Tips: first time your run the script to upload files to google drive, you should authorize in browser,if you linux server does not support GUI,you can run script at your local computer and get file: `token.json` ,copy it to your linux server , make a cron job to exec py script every day and auto upgrade `token.json` , then the script can run in linux server
 
 # 6 create cron job in your linux server
