@@ -38,22 +38,14 @@
 * `conda activate base && pip install -r requirements.txt`
 
 # 5 exec the script to upload file to Google Drive
-* `bash upload.sh` or `python upload_data_to_google_drive.py`
-* Tips: first time your run the script to upload files to google drive, you should authorize in browser,if you linux server does not support GUI,you can run script at your local computer and get file: `token.json` ,copy it to your linux server , make a cron job to exec py script every day and auto upgrade `token.json` , then the script can run in linux server
-
-# 6 create cron job in your linux server
-your can get a cron job example in `crontab.txt`
-use `crontab -e` to 
-Edit your job rules in crontab, when it finished: `Ctrl+O` -> `Enter` -> `Ctrl+X`
-
-
+* `python upload_data_to_google_drive.py`
 
 
 # Tips
-> All configuration must config in `configuration.py`
+> All configuration must config in `config.py`
 
 --------------------------------------------------------------------------------------
-**1**: you can get your `Google Drive folder id` in browser when your open a directory:
+**1**: you can get your `Google Drive folder id` in browser when your open a folder:
   * such as : https://drive.google.com/drive/folders/folder_id
 
 
@@ -64,7 +56,7 @@ if you run script in linux,and visit the `authorize_url` in your local Windows S
 
 cuz the `authorization_ip` is your linux server's ip, not your local ip in Windows server. 
 
-So you can run the python script in your Windows Server first and then get `token.json`; if you have linux GUI, you can do all of it in your linux server.
+So you can run the python script in your Windows Server and then get `token.json`; if you have linux GUI, you can do all of it in your linux server.
 
 
 --------------------------------------------------------------------------------------

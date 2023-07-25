@@ -1,1 +1,0 @@
-docker cp <container_name>:<container_directory> /data
