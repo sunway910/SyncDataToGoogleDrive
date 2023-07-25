@@ -1,3 +1,11 @@
+import math
+# file created before n days
+DAY = 999999999
+# file created before n hours
+HOUR = 0
+# file created before n minutes
+MINUTE = 0
+
 # which directory do you want to upload to Google Drive
 DIRECTORY = 'upload_test'
 

@@ -1,2 +1,2 @@
 source activate base
-python /apps/sh/SyncContainerDataToGoogleDrive/upload_to_google_one.py
+python /apps/sh/SyncContainerDataToGoogleDrive/upload_data_to_google_drive.py

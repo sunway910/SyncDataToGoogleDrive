@@ -5,7 +5,7 @@ local_host="localhost"
 local_port="3306"
 local_user="root"
 local_password="xxxxxxxxxxxxxxxx"
-local_database="xxxxxxxxxxxxxxxx"
+local_database="djangoblog"
 
 
 # Dump the local MySQL database

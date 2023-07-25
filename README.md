@@ -43,14 +43,13 @@
 
 # 6 create cron job in your linux server
 your can get a cron job example in `crontab.txt`
-use `crontab -e` to 
-Edit your job rules in crontab, when it finished: `Ctrl+O` -> `Enter` -> `Ctrl+X`
+use `crontab -e` to Edit your job rules in crontab, when it finished: `Ctrl+O` -> `Enter` -> `Ctrl+X`
 
 
 
 
 # Tips
-> All configuration must config in `configuration.py`
+> All configuration must config in `config.py`
 
 --------------------------------------------------------------------------------------
 **1**: you can get your `Google Drive folder id` in browser when your open a directory:
