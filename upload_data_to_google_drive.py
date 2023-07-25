@@ -47,7 +47,7 @@ async def upload_file_to_google_drive(files):
     # created automatically when the authorization flow completes for the first time.
     if os.path.exists('google_secret/token.json'):
         logging.info('-------------------------------use token.json to upload data---------------------------------')
-        creds = Credentials.from_authorized_user_file('google_secret/token.json', SCOPES)
+        creds = Credentials.from_authorized_user_file('google_secret/token.json', scopes)
         if creds and creds.expired and creds.refresh_token:
             logging.info('-------------------------------token.json is expired----------------------------------------')
             creds.refresh(Request())
@@ -55,7 +55,7 @@ async def upload_file_to_google_drive(files):
     # If there are no (valid) credentials available, let the user log in.
     if not creds or not creds.valid:
         logging.info('-------------------------------use credentials.json to upload data------------------------------')
-        flow = InstalledAppFlow.from_client_secrets_file('google_secret/credentials.json', SCOPES)
+        flow = InstalledAppFlow.from_client_secrets_file('google_secret/credentials.json', scopes)
         # `run_local_server` will make a connection to Google remote server, you need to open the url in browser
         creds = flow.run_local_server(port=0)
         # Save the credentials for the next run
@@ -75,8 +75,8 @@ async def upload_file_to_google_drive(files):
             tasks.append(task)
 
         # asyncio.gather(*tasks) = asyncio.gather(task1,task2,task3......)
-        res = await asyncio.gather(*tasks)
-        logging.info('Async task id list: {}'.format(res))
+        _ = await asyncio.gather(*tasks)
+        logging.info('Async tasks is finished!')
 
         logging.info("finished at {}".format(time.strftime('%X')))
     except HttpError as error:
@@ -84,27 +84,31 @@ async def upload_file_to_google_drive(files):
 
 
 async def upload(file_metadata, media, service):
-    return service.files().create(body=file_metadata, media_body=media, fields='id').execute()
+    async with semaphore:
+        return service.files().create(body=file_metadata, media_body=media, fields='id').execute()
 
 
-# control you authority in Google Drive
+# control you authority in Google Drive, default: all authority
 # If you modify these scopes after exec this script, please delete token.json and exec script repeatedly
-SCOPES = [config.GOOGLE_DRIVE_SCOPE]
+scopes = [config.GOOGLE_DRIVE_SCOPE]
 
-# find the files which created before n days
+# find the files which created before n days, default: 999999999
 days = config.DAY
 
-# find the files which created before n hours
+# find the files which created before n hours, default: 0
 hours = config.HOUR
 
-# find the files which created before n minutes
+# find the files which created before n minutes, default: 0
 minutes = config.MINUTE
 
-# which directory do you want to upload to Google Drive
+# which directory do you want to upload to Google Drive, default: 'upload_test'
 directory = config.DIRECTORY
 
 # upload to which folder in your Google Drive
 folder_id = config.FOLDER_ID
+
+# max asyncio tasks number, default: 100
+semaphore = asyncio.Semaphore(config.MAX_CONCURRENCY_NUM)
 
 if __name__ == '__main__':
     logging.getLogger().setLevel(logging.INFO)
