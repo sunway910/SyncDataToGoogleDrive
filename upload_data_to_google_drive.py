@@ -73,12 +73,11 @@ async def upload_file_to_google_drive(file_list):
             task = asyncio.create_task(upload(file_metadata, media, service))
             tasks.append(task)
 
-        # mysql data backup job
-        # mysql_dumpfile_metadata = {'name': 'blogdata_dump.sql', 'parents': [folder_id]}
+        mysql_dumpfile_metadata = {'name': 'blogdata_dump.sql', 'parents': [folder_id]}
         # # cronjob.txt cronjob: save data in /data/blog_image_data/blogdata_dump.sql
-        # mysql_media = MediaFileUpload('/data/blog_image_data/blogdata_dump.sql')
-        # mysql_backup_task = asyncio.create_task(upload(mysql_dumpfile_metadata, mysql_media, service))
-        # tasks.append(mysql_backup_task)
+        mysql_media = MediaFileUpload('/data/blog_image_data/blogdata_dump.sql')
+        mysql_backup_task = asyncio.create_task(upload(mysql_dumpfile_metadata, mysql_media, service))
+        tasks.append(mysql_backup_task)
 
         # asyncio.gather(*tasks) = asyncio.gather(task1,task2,task3......)
         res = await asyncio.gather(*tasks)
