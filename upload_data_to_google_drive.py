@@ -1,7 +1,6 @@
 import asyncio
 import time
 import os
-import config
 from datetime import datetime, timedelta
 import logging
 
@@ -11,6 +10,8 @@ from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+
+import config
 
 
 # find the file in the directory that was created before n days in case to upload duplicate file, default value is 999999999 days
