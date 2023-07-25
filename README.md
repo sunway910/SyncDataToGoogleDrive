@@ -1,6 +1,6 @@
 # Sync your data to Google Drive(Python)
 
-**My blog server produce data every day, and I don't want to lose it, so I upload the incremental data into google drive every day!**
+**My linux server produce data every day. I upload the incremental data into Google Drive every day in case to lose it when my EC2 is expired in AWS**
 
 # 1: Enable Google Drive API
 * First: you should enable Google Drive API in GCP: `https://console.cloud.google.com/apis/library`
@@ -42,15 +42,19 @@
 
 
 # Tips
-> All configuration must config in `config.py`
+> All configurations are in `config.py`
 
 --------------------------------------------------------------------------------------
-**1**: you can get your `Google Drive folder id` in browser when your open a folder:
+**1**: 
+
+You can get your `Google Drive folder id` in browser when your open a folder:
   * such as : https://drive.google.com/drive/folders/folder_id
 
 
 --------------------------------------------------------------------------------------
-**2**: first time run script: you need to authorize you account in browser and generate file: `token.json`, 
+**2**: 
+
+First time run script: you need to authorize you account in browser and generate file: `token.json`, 
 
 if you run script in linux,and visit the `authorize_url` in your local Windows Server, you will get `localhost_error`, 
 
@@ -60,11 +64,13 @@ So you can run the python script in your Windows Server and then get `token.json
 
 
 --------------------------------------------------------------------------------------
-**3**: Pay attention to the SCOPES = ['https://www.googleapis.com/auth/drive'] in `upload_data_to_google_drive.py`
+**3**: 
 
-If you want to control you authority, you need to config the param: `SCOPES`
+Pay attention to the SCOPES = ['https://www.googleapis.com/auth/drive'] in `upload_data_to_google_drive.py`
 
-you can get more information in : `https://developers.google.com/identity/protocols/oauth2/scopes`
+If you want to control you authority, you should to config the parameter: `SCOPES`
+
+You can get more information about scopes in : `https://developers.google.com/identity/protocols/oauth2/scopes`
 
 
 
