@@ -13,7 +13,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 
-# find the file in the directory that was created before n days in case to upload duplicate file, default value is 999999999 day
+# find the file in the directory that was created before n days in case to upload duplicate file, default value is 999999999 days
 def find_files_created_before_ndays() -> list:
     """
      directory_path: which directory would you want to check
