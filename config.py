@@ -1,4 +1,3 @@
-import math
 # file created before n days
 DAY = 999999999
 # file created before n hours
