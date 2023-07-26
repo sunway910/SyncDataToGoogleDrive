@@ -15,19 +15,24 @@ import config
 
 
 # find the file in the directory that was created before n days in case to upload duplicate file, default value is 999999999 days
-def find_files_created_before_ndays() -> list:
+def find_files_with_time_condition() -> list:
     """
      directory_path: which directory would you want to check
      Find the files in directory which created in nDays nHours nMinutes
     """
-    new_file_in_derectory = []
-    for root, dirs, files in os.walk(directory):
+    new_file_in_directory = []
+    for root, _, files in os.walk(directory):
+        print(root)
+        print(files)
         for file in files:
             file_path = os.path.join(root, file)
+            if toggle_status is False:
+                new_file_in_directory.append(file_path)
+                continue
             file_created = datetime.fromtimestamp(os.path.getctime(file_path))
             if datetime.now() - file_created < timedelta(days=days, hours=hours, minutes=minutes):
-                new_file_in_derectory.append(file_path)
-    return new_file_in_derectory
+                new_file_in_directory.append(file_path)
+    return new_file_in_directory
 
 
 # use asyncio to upload file
@@ -104,6 +109,9 @@ minutes = config.MINUTE
 # which directory do you want to upload to Google Drive, default: 'upload_test'
 directory = config.DIRECTORY
 
+# The toggle of file conditions filter
+toggle_status = config.FILE_CONDITION_TOGGLE
+
 # upload to which folder in your Google Drive
 folder_id = config.FOLDER_ID
 
@@ -112,6 +120,6 @@ semaphore = asyncio.Semaphore(config.MAX_CONCURRENCY_NUM)
 
 if __name__ == '__main__':
     logging.getLogger().setLevel(logging.INFO)
-    files = find_files_created_before_ndays()
-    logging.info("{} should be uploaded to google drive!".format(files))
+    files = find_files_with_time_condition()
+    logging.info("{} should be uploaded to Google Drive!".format(files))
     asyncio.run(upload_file_to_google_drive(files))

@@ -10,6 +10,9 @@ MINUTE = 0
 # which directory do you want to upload to Google Drive
 DIRECTORY = 'upload_test'
 
+# The toggle of upload_file conditions filter
+FILE_CONDITION_TOGGLE = True
+
 # upload to which folder in your Google Drive
 # you can get your `Google Drive folder id` in browser when your open a folder
 # such as : https://drive.google.com/drive/folders/folder_id
