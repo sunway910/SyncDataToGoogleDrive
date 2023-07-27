@@ -22,13 +22,11 @@ def find_files_with_time_condition() -> list:
     """
     new_file_in_directory = []
     for root, _, files in os.walk(directory):
-        print(root)
-        print(files)
+        if toggle_status is False:
+            new_file_in_directory = [os.path.join(root, file) for file in files]
+            break
         for file in files:
             file_path = os.path.join(root, file)
-            if toggle_status is False:
-                new_file_in_directory.append(file_path)
-                continue
             file_created = datetime.fromtimestamp(os.path.getctime(file_path))
             if datetime.now() - file_created < timedelta(days=days, hours=hours, minutes=minutes):
                 new_file_in_directory.append(file_path)
@@ -122,4 +120,4 @@ if __name__ == '__main__':
     logging.getLogger().setLevel(logging.INFO)
     files = find_files_with_time_condition()
     logging.info("{} should be uploaded to Google Drive!".format(files))
-    asyncio.run(upload_file_to_google_drive(files))
+    # asyncio.run(upload_file_to_google_drive(files))
