@@ -3,6 +3,7 @@ import time
 import os
 from datetime import datetime, timedelta
 import logging
+import re
 
 from googleapiclient.http import MediaFileUpload
 from google.auth.transport.requests import Request
@@ -70,7 +71,8 @@ async def upload_file_to_google_drive(files):
         tasks = []
 
         for file in files:
-            file_metadata = {'name': file, 'parents': [folder_id]}
+            pattern = r"\\|/"  # upload_test/1.txt -> 1.txt upload_test\1.txt -> 1.txt
+            file_metadata = {'name': re.split(pattern, file)[-1], 'parents': [folder_id]}
             media = MediaFileUpload(file)
             task = asyncio.create_task(upload(file_metadata, media, service))
             tasks.append(task)
