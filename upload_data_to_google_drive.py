@@ -52,6 +52,7 @@ async def upload_file_to_google_drive(files):
         logger.info('-------------------------------use token.json to upload data---------------------------------')
         creds = Credentials.from_authorized_user_file('google_secret/token.json', scopes)
         creds.refresh(Request())
+        logger.info("Token upgrade successfully")
     # If there are no (valid) credentials available, let the user log in.
     if not creds or not creds.valid:
         logger.info('-------------------------------use credentials.json to upload data------------------------------')
