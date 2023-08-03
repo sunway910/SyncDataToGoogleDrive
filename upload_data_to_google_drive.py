@@ -49,15 +49,15 @@ async def upload_file_to_google_drive(files):
     # The file token.json stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first time.
     if os.path.exists('google_secret/token.json'):
-        logging.info('-------------------------------use token.json to upload data---------------------------------')
+        logger.info('-------------------------------use token.json to upload data---------------------------------')
         creds = Credentials.from_authorized_user_file('google_secret/token.json', scopes)
         if creds and creds.expired and creds.refresh_token:
-            logging.info('-------------------------------token.json is expired----------------------------------------')
+            logger.info('-------------------------------token.json is expired----------------------------------------')
             creds.refresh(Request())
-            logging.info('upgrade token successfully')
+            logger.info('upgrade token successfully')
     # If there are no (valid) credentials available, let the user log in.
     if not creds or not creds.valid:
-        logging.info('-------------------------------use credentials.json to upload data------------------------------')
+        logger.info('-------------------------------use credentials.json to upload data------------------------------')
         flow = InstalledAppFlow.from_client_secrets_file('google_secret/credentials.json', scopes)
         # `run_local_server` will make a connection to Google remote server, you need to open the url in browser
         creds = flow.run_local_server(port=0)
@@ -68,7 +68,7 @@ async def upload_file_to_google_drive(files):
         # build Google Drive api client
         service = build('drive', 'v3', credentials=creds)
 
-        logging.info("started at {}".format(time.strftime('%X')))
+        logger.info("started at {}".format(time.strftime('%X')))
         tasks = []
 
         for file in files:
@@ -79,11 +79,11 @@ async def upload_file_to_google_drive(files):
 
         # asyncio.gather(*tasks) = asyncio.gather(task1,task2,task3......)
         _ = await asyncio.gather(*tasks)
-        logging.info('Async tasks is finished!')
+        logger.info('Async tasks is finished!')
 
-        logging.info("finished at {}".format(time.strftime('%X')))
+        logger.info("finished at {}".format(time.strftime('%X')))
     except HttpError as error:
-        logging.error('An error occurred: {}'.format(error))
+        logger.error('An error occurred: {}'.format(error))
 
 
 async def upload(file_metadata, media, service):
@@ -117,7 +117,8 @@ folder_id = config.FOLDER_ID
 semaphore = asyncio.Semaphore(config.MAX_CONCURRENCY_NUM)
 
 if __name__ == '__main__':
-    logging.getLogger().setLevel(logging.INFO)
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s : %(message)s', datefmt='%Y-%m-%d %A %H:%M:%S')
+    logger = logging.getLogger()
     files = find_files_with_time_condition()
-    logging.info("{} should be uploaded to Google Drive!".format(files))
-    asyncio.run(upload_file_to_google_drive(files))
+    logger.info("{files} should be uploaded to Google Drive!".format(files=files))
+    # asyncio.run(upload_file_to_google_drive(files))
