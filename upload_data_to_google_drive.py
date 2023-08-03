@@ -121,4 +121,4 @@ if __name__ == '__main__':
     logger = logging.getLogger()
     files = find_files_with_time_condition()
     logger.info("{files} should be uploaded to Google Drive!".format(files=files))
-    # asyncio.run(upload_file_to_google_drive(files))
+    asyncio.run(upload_file_to_google_drive(files))
