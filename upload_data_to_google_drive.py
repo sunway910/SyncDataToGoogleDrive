@@ -51,10 +51,7 @@ async def upload_file_to_google_drive(files):
     if os.path.exists('google_secret/token.json'):
         logger.info('-------------------------------use token.json to upload data---------------------------------')
         creds = Credentials.from_authorized_user_file('google_secret/token.json', scopes)
-        if creds and creds.expired and creds.refresh_token:
-            logger.info('-------------------------------token.json is expired----------------------------------------')
-            creds.refresh(Request())
-            logger.info('upgrade token successfully')
+        creds.refresh(Request())
     # If there are no (valid) credentials available, let the user log in.
     if not creds or not creds.valid:
         logger.info('-------------------------------use credentials.json to upload data------------------------------')
